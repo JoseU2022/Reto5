@@ -29,7 +29,7 @@ public class AdministratorService {
         else {
             Optional<Administrator> e = administratorRepository.getAdministrator(administrator.getId());
 
-            if(!e.isEmpty()){
+            if(e.isPresent()){
                 return administrator;
             }
             else {
@@ -42,7 +42,7 @@ public class AdministratorService {
         if (administrator.getId() != null) {
             Optional<Administrator> e = administratorRepository.getAdministrator(administrator.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (administrator.getName() != null) {
                     e.get().setName(administrator.getName());
@@ -69,7 +69,7 @@ public class AdministratorService {
     public boolean delete(int id){
         boolean flag = false;
         Optional<Administrator> e = administratorRepository.getAdministrator(id);
-        if(!e.isEmpty()){
+        if(e.isPresent()){
             administratorRepository.delete(e.get());
             flag = true;
         }

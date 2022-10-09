@@ -28,7 +28,7 @@ public class ReservationService {
         } else {
             Optional<Reservation> e = reservationRepository.getReservation(reservation.getIdReservation());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
                 return reservation;
             } else {
                 return reservationRepository.save(reservation);
@@ -40,7 +40,7 @@ public class ReservationService {
         if (reservation.getIdReservation() != null) {
             Optional<Reservation> e = reservationRepository.getReservation(reservation.getIdReservation());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (reservation.getStartDate() != null) {
                     e.get().setStartDate(reservation.getStartDate());
@@ -70,7 +70,7 @@ public class ReservationService {
     public boolean delete(int id) {
         boolean flag = false;
         Optional<Reservation> e = reservationRepository.getReservation(id);
-        if (!e.isEmpty()) {
+        if (e.isPresent()) {
             reservationRepository.delete(e.get());
             flag = true;
         }

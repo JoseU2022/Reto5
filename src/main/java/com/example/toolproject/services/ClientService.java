@@ -29,7 +29,7 @@ public class ClientService {
         else {
             Optional<Client> e = clientRepository.getClient(client.getIdClient());
 
-            if(!e.isEmpty()){
+            if(e.isPresent()){
                 return client;
             }
             else {

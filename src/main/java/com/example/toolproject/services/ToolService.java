@@ -28,7 +28,7 @@ public class ToolService {
         } else {
             Optional<Tool> e = toolRepository.getTool(tool.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
                 return tool;
             } else {
                 return toolRepository.save(tool);
@@ -40,7 +40,7 @@ public class ToolService {
         if (tool.getId() != null) {
             Optional<Tool> e = toolRepository.getTool(tool.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (tool.getName() != null) {
                     e.get().setName(tool.getName());
@@ -70,7 +70,7 @@ public class ToolService {
     public boolean delete(int id) {
         boolean flag = false;
         Optional<Tool> e = toolRepository.getTool(id);
-        if (!e.isEmpty()) {
+        if (e.isPresent()) {
             toolRepository.delete(e.get());
             flag = true;
         }

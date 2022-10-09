@@ -28,7 +28,7 @@ public class CategoryService {
         } else {
             Optional<Category> e = categoryRepository.getCategory(category.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
                 return category;
             } else {
                 return categoryRepository.save(category);
@@ -40,7 +40,7 @@ public class CategoryService {
         if (category.getId() != null) {
             Optional<Category> e = categoryRepository.getCategory(category.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (category.getName() != null) {
                     e.get().setName(category.getName());
@@ -62,7 +62,7 @@ public class CategoryService {
     public boolean delete(int id) {
         boolean flag = false;
         Optional<Category> e = categoryRepository.getCategory(id);
-        if (!e.isEmpty()) {
+        if (e.isPresent()) {
             categoryRepository.delete(e.get());
             flag = true;
         }

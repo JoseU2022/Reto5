@@ -28,7 +28,7 @@ public class MessageService {
         } else {
             Optional<Message> e = messageRepository.getMessage(message.getIdMessage());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
                 return message;
             } else {
                 return messageRepository.save(message);
@@ -40,7 +40,7 @@ public class MessageService {
         if (message.getIdMessage() != null) {
             Optional<Message> e = messageRepository.getMessage(message.getIdMessage());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (message.getMessageText() != null) {
                     e.get().setMessageText(message.getMessageText());
@@ -58,7 +58,7 @@ public class MessageService {
     public boolean delete(int id) {
         boolean flag = false;
         Optional<Message> e = messageRepository.getMessage(id);
-        if (!e.isEmpty()) {
+        if (e.isPresent()) {
             messageRepository.delete(e.get());
             flag = true;
         }

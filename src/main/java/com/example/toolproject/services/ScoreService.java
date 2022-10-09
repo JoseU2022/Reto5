@@ -28,7 +28,7 @@ public class ScoreService {
         } else {
             Optional<Score> e = scoreRepository.getScore(score.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
                 return score;
             } else {
                 return scoreRepository.save(score);
@@ -40,7 +40,7 @@ public class ScoreService {
         if (score.getId() != null) {
             Optional<Score> e = scoreRepository.getScore(score.getId());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (score.getStars() != null) {
                     e.get().setStars(score.getStars());
@@ -62,7 +62,7 @@ public class ScoreService {
     public boolean delete(int id) {
         boolean flag = false;
         Optional<Score> e = scoreRepository.getScore(id);
-        if (!e.isEmpty()) {
+        if (e.isPresent()) {
             scoreRepository.delete(e.get());
             flag = true;
         }
