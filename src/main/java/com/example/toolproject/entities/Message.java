@@ -16,7 +16,7 @@ public class Message implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="messageIdTool")
-    @JsonIgnoreProperties({"messages", "client"})
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Tool tool;
 
     @ManyToOne
