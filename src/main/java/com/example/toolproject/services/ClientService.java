@@ -42,7 +42,7 @@ public class ClientService {
         if (client.getIdClient() != null) {
             Optional<Client> e = clientRepository.getClient(client.getIdClient());
 
-            if (!e.isEmpty()) {
+            if (e.isPresent()) {
 
                 if (client.getEmail() != null) {
                     e.get().setEmail(client.getEmail());
@@ -73,7 +73,7 @@ public class ClientService {
     public boolean delete(int id){
         boolean flag = false;
         Optional<Client> e = clientRepository.getClient(id);
-        if(!e.isEmpty()){
+        if(e.isPresent()){
             clientRepository.delete(e.get());
             flag = true;
         }
