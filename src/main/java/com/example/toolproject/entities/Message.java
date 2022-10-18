@@ -37,16 +37,16 @@ public class Message implements Serializable {
         return messageText;
     }
 
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
+
     public Tool getTool() {
         return tool;
     }
 
     public void setTool(Tool tool) {
         this.tool = tool;
-    }
-
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
     }
 
     public Client getClient() {
