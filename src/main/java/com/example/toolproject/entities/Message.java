@@ -29,7 +29,7 @@ public class Message implements Serializable {
         return idMessage;
     }
 
-    public void setIdMessage(Integer id) {
+    public void setIdMessage(Integer idMessage) {
         this.idMessage = idMessage;
     }
 
