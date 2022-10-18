@@ -2,27 +2,27 @@ package com.example.toolproject.entities;
 
 public class Status {
 
-    private int completedReservation;
-    private int cancelledReservation;
+    private int completed;
+    private int cancelled;
 
-    public Status(int completedReservation, int cancelledReservation) {
-        this.completedReservation = completedReservation;
-        this.cancelledReservation = cancelledReservation;
+    public Status(int completed, int cancelled) {
+        this.completed = completed;
+        this.cancelled = cancelled;
     }
 
-    public int getCompletedReservation() {
-        return completedReservation;
+    public int getCompleted() {
+        return completed;
     }
 
-    public void setCompletedReservation(int completedReservation) {
-        this.completedReservation = completedReservation;
+    public void setCompleted(int completed) {
+        this.completed = completed;
     }
 
-    public int getCancelledReservation() {
-        return cancelledReservation;
+    public int getCancelled() {
+        return cancelled;
     }
 
-    public void setCancelledReservation(int cancelledReservation) {
-        this.cancelledReservation = cancelledReservation;
+    public void setCancelled(int cancelled) {
+        this.cancelled = cancelled;
     }
 }
