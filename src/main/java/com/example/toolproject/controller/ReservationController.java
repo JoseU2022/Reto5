@@ -1,8 +1,6 @@
 package com.example.toolproject.controller;
 
-import com.example.toolproject.entities.Category;
-import com.example.toolproject.entities.Client;
-import com.example.toolproject.entities.Reservation;
+import com.example.toolproject.entities.*;
 import com.example.toolproject.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,4 +38,19 @@ public class ReservationController {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {return reservationService.update(reservation);}
+
+    @GetMapping("/report-clients")
+    public List<ClientCounter> getReservationsReportClient(){
+        return reservationService.getTopClients();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateStart,@PathVariable("dateTwo") String dateEnd){
+        return reservationService.informReservationTime(dateStart,dateEnd);
+    }
+
+    @GetMapping("/report-status")
+    public Status getReservationsStatusReport(){
+        return reservationService.getReservationStatusReport();
+    }
 }

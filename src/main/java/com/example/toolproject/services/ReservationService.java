@@ -1,10 +1,16 @@
 package com.example.toolproject.services;
 
+import com.example.toolproject.entities.ClientCounter;
 import com.example.toolproject.entities.Reservation;
+import com.example.toolproject.entities.Status;
 import com.example.toolproject.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,5 +81,34 @@ public class ReservationService {
             flag = true;
         }
         return flag;
+    }
+
+    public Status getReservationStatusReport(){
+        List<Reservation>completed=reservationRepository.getReservationByStatus("completed");
+        List<Reservation>cancelled=reservationRepository.getReservationByStatus("cancelled");
+        return new Status (completed.size(),cancelled.size());
+    }
+
+    public List<Reservation> informReservationTime(String datoA, String datoB){
+        SimpleDateFormat dateType = new SimpleDateFormat("yyyy-MM-dd");
+        Date begin = new Date();
+        Date end = new Date();
+
+        try{
+            begin = dateType.parse(datoA);
+            end= dateType.parse(datoB);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+
+        if (begin.before(end)){
+            return reservationRepository.informReservationTime(begin, end);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ClientCounter> getTopClients(){
+        return reservationRepository.getTopClient();
     }
 }
